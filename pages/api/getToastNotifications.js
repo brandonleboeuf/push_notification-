@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const data = [
   {
-    id: 1,
-    scheduledTime: new Date('January 15, 2022 11:25:00').getTime(),
-    timeRange: 60000, // Any time within one minuit of scheduledTime
+    id: 1, // Id used to ensure that message isn't displayed multiple times
+    scheduledTime: new Date('January 15, 2022 11:25:00').getTime(), // Time for the message to be sent to the App
+    timeRange: 60000, // If the user is logged in any time within one minuit of scheduledTime, this will be shown.
     message: "This is the message for nicole"
   },
   {
@@ -25,6 +25,7 @@ export default function handler(req, res) {
   const messagesArray = []
 
   data.map(item => {
+    // Only show if it is after the scheduledTime but before the end of the timeRange
     if (now >= item.scheduledTime && now < item.scheduledTime + item.timeRange ) {
       messagesArray.push({ id: item.id, message: item.message})
     }

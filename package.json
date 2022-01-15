@@ -1,5 +1,5 @@
 {
-  "name": "next_notification_toast",
+  "name": "react-hot-toast-nextjs",
   "private": true,
   "scripts": {
     "dev": "next dev",
