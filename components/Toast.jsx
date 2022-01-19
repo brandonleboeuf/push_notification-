@@ -8,13 +8,15 @@ export const Toast = () => {
 
   useEffect(()=> {
     // Calls api to check for messages every 30 seconds
-    setInterval(notification, 30000)
+    setInterval(notification, 3000)
   },[])
 
   const notification = async () => {
     const {messages} = await fetch('/api/getToastNotifications').then(res => res.json())
 
-    messages.map((item) => {
+    if (messages === "Nothing scheduled") return
+
+    messages.forEach((item) => {
       // only display if this message is not listed in the userNotificationList
       if (!userNotificationList.includes(item.id)) {
 
